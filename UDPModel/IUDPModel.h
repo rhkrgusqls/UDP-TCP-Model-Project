@@ -1,5 +1,5 @@
-#ifndef I_UTP_MODEL_H
-#define I_UTP_MODEL_H
+#ifndef I_UDP_MODEL_H
+#define I_UDP_MODEL_H
 
 #include <cstdint> // uint64_t, uint32_t 등 사용
 #include <functional> // 콜백 함수(std::function) 사용
@@ -8,9 +8,9 @@
 // (세션ID, 패킷번호, 상태코드)를 인자로 받음
 using UdpPacketCallback = std::function<void(uint64_t, uint64_t, int)>;
 
-class IUTPModel {
+class IUDPModel {
 public:
-    virtual ~IUTPModel() = default;
+    virtual ~IUDPModel() = default;
 
     /**
      * @brief 전송 세션을 초기화합니다. (TCP로 메타데이터 교환 후 호출)
@@ -46,4 +46,4 @@ public:
     virtual void SetStatusCallback(UdpPacketCallback callback) = 0;
 };
 
-#endif // I_UTP_MODEL_H
+#endif // I_UDP_MODEL_H

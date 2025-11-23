@@ -1,7 +1,7 @@
-#ifndef UTP_MODEL_H
-#define UTP_MODEL_H
+#ifndef UDP_MODEL_H
+#define UDP_MODEL_H
 
-#include "IUTPModel.h"
+#include "IUDPModel.h"
 #include <vector>
 #include <string>
 #include <mutex>
@@ -14,12 +14,12 @@ struct UdpPacketHeader {
 };
 #pragma pack(pop)
 
-class UTPModel : public IUTPModel {
+class UDPModel : public IUDPModel {
 private:
     // 멤버 변수들 (private으로 숨김)
     uint64_t m_sessionId;
     uint64_t m_totalPackets;
-    std::string m_outputFilename;
+    std::string m_oUDPutFilename;
     
     // 데이터 버퍼 (vector 사용 권장)
     std::vector<std::vector<unsigned char>> m_packetBuffer;
@@ -32,8 +32,8 @@ private:
     UdpPacketCallback m_callback;
 
 public:
-    UTPModel();
-    virtual ~UTPModel();
+    UDPModel();
+    virtual ~UDPModel();
 
     // 인터페이스 구현부 (override 키워드로 명시)
     int InitializeSession(uint64_t sessionId, uint64_t totalPackets, const char* filename) override;

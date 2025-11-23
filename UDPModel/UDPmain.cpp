@@ -1,10 +1,10 @@
 // main.cpp
 #include <iostream>
-#include "UTPModel.h"
+#include "UDPModel.h"
 
 int main() {
     // 1. 객체 생성 (인터페이스 포인터로 받기)
-    IUTPModel* model = new UTPModel();
+    IUDPModel* model = new UDPModel();
 
     // 2. 콜백 등록 (람다 함수 사용)
     model->SetStatusCallback([](uint64_t sessId, uint64_t pktIdx, int status) {

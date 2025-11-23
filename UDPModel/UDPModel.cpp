@@ -1,21 +1,21 @@
-#include "UTPModel.h"
+#include "UDPModel.h"
 #include <iostream>
 #include <cstring> // memcpy 등
 
-UTPModel::UTPModel() : m_sessionId(0), m_totalPackets(0) {
+UDPModel::UDPModel() : m_sessionId(0), m_totalPackets(0) {
     // 생성자 초기화
 }
 
-UTPModel::~UTPModel() {
+UDPModel::~UDPModel() {
     // 소멸자 (필요 시 자원 해제)
 }
 
-int UTPModel::InitializeSession(uint64_t sessionId, uint64_t totalPackets, const char* filename) {
+int UDPModel::InitializeSession(uint64_t sessionId, uint64_t totalPackets, const char* filename) {
     std::lock_guard<std::mutex> lock(m_mutex); // 스레드 안전하게 잠금
 
     m_sessionId = sessionId;
     m_totalPackets = totalPackets;
-    m_outputFilename = filename;
+    m_oUDPutFilename = filename;
 
     // 버퍼 크기 잡기 (예시)
     m_packetBuffer.resize(totalPackets);
@@ -25,7 +25,7 @@ int UTPModel::InitializeSession(uint64_t sessionId, uint64_t totalPackets, const
     return 1;
 }
 
-int UTPModel::ProcessReceivedPacket(const unsigned char* rawData, int length) {
+int UDPModel::ProcessReceivedPacket(const unsigned char* rawData, int length) {
     if (length < sizeof(UdpPacketHeader)) {
         return -1; // 헤더보다 작으면 에러
     }
@@ -59,12 +59,12 @@ int UTPModel::ProcessReceivedPacket(const unsigned char* rawData, int length) {
     return 1;
 }
 
-int UTPModel::SendData(const unsigned char* data, int length) {
+int UDPModel::SendData(const unsigned char* data, int length) {
     // 여기에 sendto() 등을 이용한 UDP 전송 로직 구현
     // 현재는 모델 구조만 잡는 것이므로 성공(1) 리턴
     return 1; 
 }
 
-void UTPModel::SetStatusCallback(UdpPacketCallback callback) {
+void UDPModel::SetStatusCallback(UdpPacketCallback callback) {
     m_callback = callback;
 }
