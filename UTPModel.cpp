@@ -35,7 +35,7 @@ int UTPModel::ProcessReceivedPacket(const unsigned char* rawData, int length) {
 
     // 2. 세션 확인
     if (header->session_id != m_sessionId) {
-        return -1; // 내 세션 패킷이 아님
+        return -1; // 내 세션 패킷이 아닐
     }
 
     // 3. 데이터 저장 (Critical Section)

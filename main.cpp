@@ -16,7 +16,7 @@ int main() {
     // 3. 세션 초기화 테스트
     model->InitializeSession(100, 5, "test.txt");
 
-    // 4. 가짜 데이터 수신 테스트 (패킷 헤더 + 데이터)
+    // 4. 가짜 데이터 수신 테스트 (패킷 헤더 + 데이터) 
     // 헤더 구조: [SessionID(8)][PacketIdx(8)][DataLen(4)] + [Data...]
     struct {
         uint64_t sid = 100;
